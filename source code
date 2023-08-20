@@ -1,0 +1,23 @@
+SELECT
+    /* Required Source Type
+       When SRC_TYPE is static string: 'blob' and "Use Image source from BLOB Column" in Attributes is activated then you can show images directly from a table
+       When SRC_TYPE is static string: 'url' then SRC_VALUE should be a url to the image in web or e.g. static files */
+    'url' AS SRC_TYPE,
+    /* Required Source Value
+       When SRC_TYPE is 'blob' then the SRC_VALUE should be the Primary Key for the blob file. 
+       This is not the blob file column. This Key is needed in "Use Image source from BLOB Column" in Attributes to get the image blob when needed
+       When SRC_TYPE is 'url' then add here the url of the image */
+    'https://github.com/fraanciisq/Apex-Images/raw/main/full/0' || ROWNUM || '.jpg' AS SRC_VALUE,
+    /* Optional Title of the image */
+    -- https://github.com/RonnyWeiss/Apex-Advent-Calendar/raw/master/img/full/0
+    -- https://github.com/fraanciisq/Apex-Images/raw/main/full/0
+
+    'Image Title ' || ROWNUM AS SRC_TITLE
+    /* Optinoal add link for click on images */
+    -- 'https://github.com/RonnyWeiss' AS LINK,
+    /* Optional set time span when next img should be loaded, if 0, null or column is missing then autoslide it's disabled */
+    -- 5 AS DURATION
+FROM
+    DUAL
+CONNECT BY
+    ROWNUM <= 9
